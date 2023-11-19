@@ -9,6 +9,7 @@ public class LightPuzzle : MonoBehaviour
     private Color ogColor;
     public bool isActive = true;
     public List<LightPuzzle> neighbours = new List<LightPuzzle>();
+    public LightPuzzleCheck check;
     void Start()
     {
         rend = GetComponent<SpriteRenderer>();
@@ -29,6 +30,7 @@ public class LightPuzzle : MonoBehaviour
         {
             neighbours[i].Toggle();
         }
+        check.CheckSuccess();
     }
     public void Toggle()
     {

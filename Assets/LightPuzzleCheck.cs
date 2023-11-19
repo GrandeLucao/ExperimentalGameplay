@@ -6,23 +6,28 @@ public class LightPuzzleCheck : MonoBehaviour
 {
     public List<LightPuzzle> puzzleList = new List<LightPuzzle>();
     public List<bool> puzzleCheck = new List<bool>();
+    private AudioSource audioSource;
+    public AudioClip audioClip;
     void Start()
     {
+        audioSource = gameObject.AddComponent<AudioSource>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        CheckSuccess();
     }
 
     public void CheckSuccess()
     {
+        int index = 0;
         for (int i = 0; i < puzzleList.Count; i++)
         {
             if (puzzleList[i].isActive != puzzleCheck[i]) { return; }
+            index++;
         }
         //Puzzle terminado
-        this.gameObject.SetActive(false);
+        audioSource.clip = audioClip;
+        audioSource.volume = 0.3f;
+        audioSource.PlayOneShot(audioSource.clip);
     }
 }
